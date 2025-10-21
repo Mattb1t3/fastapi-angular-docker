@@ -1,0 +1,21 @@
+# Archivos innecesarios para las imágenes
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+node_modules
+dist
+build
+.git
+.gitignore
+.vscode
+.env
+README.md
+notas.text
+Dockerfile_backend
+Dockerfile_frontend
+docker-compose.yml
+
+__pycache__/
+*.cpython-*
+db_init/

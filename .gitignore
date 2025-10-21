@@ -1,0 +1,48 @@
+# === Python / FastAPI ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+.env
+.venv/
+venv/
+env/
+alembic_backend/
+
+# === Node / Angular ===
+node_modules/
+dist/
+build/
+.angular/
+
+# === Docker ===
+*.log
+docker-compose.override.yml
+Dockerfile_backend
+Dockerfile_frontend
+
+# === VSCode ===
+.vscode/
+*.code-workspace
+
+# === Sistema ===
+.DS_Store
+Thumbs.db
+.idea/
+notas.text
+
+# === Otros ===
+# Evita subir archivos grandes o temporales
+*.bak
+*.tmp
+
+# Compilados Python
+*.cpython-*
+__pycache__/
+
+# Archivos temporales o de base de datos
+*.db
+db_init/
