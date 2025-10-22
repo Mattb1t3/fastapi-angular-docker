@@ -1,5 +1,5 @@
 # === Python / FastAPI ===
-__pycache__/
+_pycache_/
 *.pyc
 *.pyo
 *.pyd
@@ -40,8 +40,8 @@ notas.text
 *.tmp
 
 # Compilados Python
-*.cpython-*
-__pycache__/
+.cpython-
+_pycache_/
 
 # Archivos temporales o de base de datos
 *.db

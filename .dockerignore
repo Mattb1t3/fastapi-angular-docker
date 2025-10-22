@@ -1,9 +1,10 @@
 # Archivos innecesarios para las imágenes
-__pycache__/
+_pycache_/
 *.pyc
 *.pyo
 *.pyd
-node_modules
+src_frontend/node_modules
+src_backend/node_modules
 dist
 build
 .git
@@ -16,6 +17,6 @@ Dockerfile_backend
 Dockerfile_frontend
 docker-compose.yml
 
-__pycache__/
-*.cpython-*
+_pycache_/
+.cpython-
 db_init/
