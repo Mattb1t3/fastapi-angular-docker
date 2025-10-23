@@ -6,7 +6,7 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #667eea 0%, #667eea 100%);
   padding: 20px 0;
 }
 
@@ -103,7 +103,7 @@
 .logo-circle {
   width: 75px;
   height: 75px;
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #f093fb 0%, #667eea 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -191,17 +191,17 @@
 
 .input-wrapper input:focus {
   outline: none;
-  border-color: #f093fb;
+  border-color: #667eea;
   box-shadow: 0 0 0 3px rgba(240, 147, 251, 0.1);
 }
 
 .input-wrapper input:focus + .input-icon,
 .input-wrapper:focus-within .input-icon {
-  color: #f093fb;
+  color: #667eea;
 }
 
 .input-wrapper input.invalid {
-  border-color: #fc8181;
+  border-color: #667eea;
 }
 
 .input-wrapper input::placeholder {
@@ -233,7 +233,7 @@
 
 .error-message {
   font-size: 13px;
-  color: #fc8181;
+  color: #667eea;
   margin-top: 4px;
   animation: shake 0.3s;
 }
@@ -279,7 +279,7 @@
 .btn-submit {
   width: 100%;
   padding: 15px;
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #667eea 0%, #667eea 100%);
   color: white;
   border: none;
   border-radius: 12px;
@@ -322,12 +322,12 @@
 .login-link {
   text-align: center;
   font-size: 14px;
-  color: #718096;
+  color: #667eea;
   margin-top: 8px;
 }
 
 .login-link a {
-  color: #f093fb;
+  color: #667eea;
   text-decoration: none;
   font-weight: 600;
   margin-left: 4px;
