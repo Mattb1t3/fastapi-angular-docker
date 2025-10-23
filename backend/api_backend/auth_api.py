@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from datetime import timedelta
-from deps_api import get_db, get_current_user
-from models import Usuario
-from schemas_api import UsuarioRegistro, UsuarioLogin, Token, UsuarioResponse
-from config_api import (
+from .deps_api import get_db, get_current_user
+from .models import Usuario
+from .schemas_api import UsuarioRegistro, UsuarioLogin, Token, UsuarioResponse
+from .config_api import (
     verify_password, 
     get_password_hash, 
     create_access_token,

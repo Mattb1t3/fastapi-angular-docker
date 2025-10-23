@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import sys
-sys.path.append('/app')  # Agrega la ruta padre
-from database import engine, Base
-import auth_api
+
+
+# ✅ DESPUÉS (correcto) - Imports relativos
+from .database import engine, Base
+from . import auth_api
 
 # Crear tablas en la base de datos
 Base.metadata.create_all(bind=engine)
@@ -17,7 +18,7 @@ app = FastAPI(
 # Configurar CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],  # Angular dev server
+    allow_origins=["http://localhost:4200"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

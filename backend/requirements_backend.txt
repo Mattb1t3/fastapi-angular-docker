@@ -9,7 +9,8 @@ alembic
 passlib[bcrypt]
 python-jose
 websockets
-
+pydantic[email]
+cryptography
 
 python-dotenv
 pymysql
