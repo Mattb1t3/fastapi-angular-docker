@@ -1,0 +1,153 @@
+<div class="register-container">
+  <div class="register-background">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+
+  <div class="register-card">
+    <div class="register-header">
+      <div class="logo-container">
+        <div class="logo-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="8.5" cy="7" r="4"></circle>
+            <line x1="20" y1="8" x2="20" y2="14"></line>
+            <line x1="23" y1="11" x2="17" y2="11"></line>
+          </svg>
+        </div>
+      </div>
+      <h1 class="register-title">Crear Cuenta</h1>
+      <p class="register-subtitle">Completa el formulario para registrarte</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+      
+      <!-- Nombre -->
+      <div class="form-group" [class.error]="isFieldInvalid('nombre')">
+        <label for="nombre">Nombre Completo</label>
+        <div class="input-wrapper">
+          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <input
+            type="text"
+            id="nombre"
+            formControlName="nombre"
+            placeholder="Juan Pérez"
+            [class.invalid]="isFieldInvalid('nombre')"
+          />
+        </div>
+        <span class="error-message" *ngIf="isFieldInvalid('nombre')">
+          {{ getErrorMessage('nombre') }}
+        </span>
+      </div>
+
+      <!-- Correo -->
+      <div class="form-group" [class.error]="isFieldInvalid('correo')">
+        <label for="correo">Correo Electrónico</label>
+        <div class="input-wrapper">
+          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <input
+            type="email"
+            id="correo"
+            formControlName="correo"
+            placeholder="usuario@ejemplo.com"
+            [class.invalid]="isFieldInvalid('correo')"
+          />
+        </div>
+        <span class="error-message" *ngIf="isFieldInvalid('correo')">
+          {{ getErrorMessage('correo') }}
+        </span>
+      </div>
+
+      <!-- Contraseña -->
+      <div class="form-group" [class.error]="isFieldInvalid('password')">
+        <label for="password">Contraseña</label>
+        <div class="input-wrapper">
+          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            formControlName="password"
+            placeholder="••••••••"
+            [class.invalid]="isFieldInvalid('password')"
+          />
+          <button type="button" class="toggle-password" (click)="togglePassword()">
+            <svg *ngIf="!showPassword" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <svg *ngIf="showPassword" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+              <line x1="1" y1="1" x2="23" y2="23"></line>
+            </svg>
+          </button>
+        </div>
+        <span class="error-message" *ngIf="isFieldInvalid('password')">
+          {{ getErrorMessage('password') }}
+        </span>
+      </div>
+
+      <!-- Confirmar Contraseña -->
+      <div class="form-group" [class.error]="isFieldInvalid('confirmar_password')">
+        <label for="confirmar_password">Confirmar Contraseña</label>
+        <div class="input-wrapper">
+          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <input
+            [type]="showConfirmPassword ? 'text' : 'password'"
+            id="confirmar_password"
+            formControlName="confirmar_password"
+            placeholder="••••••••"
+            [class.invalid]="isFieldInvalid('confirmar_password')"
+          />
+          <button type="button" class="toggle-password" (click)="toggleConfirmPassword()">
+            <svg *ngIf="!showConfirmPassword" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <svg *ngIf="showConfirmPassword" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+              <line x1="1" y1="1" x2="23" y2="23"></line>
+            </svg>
+          </button>
+        </div>
+        <span class="error-message" *ngIf="isFieldInvalid('confirmar_password')">
+          {{ getErrorMessage('confirmar_password') }}
+        </span>
+      </div>
+
+      <!-- Error Alert -->
+      <div class="error-alert" *ngIf="errorMessage">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <span>{{ errorMessage }}</span>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn-submit" [disabled]="loading || registerForm.invalid">
+        <span *ngIf="!loading">Crear Cuenta</span>
+        <span *ngIf="loading" class="loading-spinner"></span>
+      </button>
+
+      <!-- Login Link -->
+      <div class="login-link">
+        <span>¿Ya tienes cuenta?</span>
+        <a routerLink="/login">Inicia sesión aquí</a>
+      </div>
+    </form>
+  </div>
+</div>

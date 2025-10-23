@@ -1,20 +1,25 @@
-# backend/api_backend/database.py
-
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
-from dotenv import load_dotenv
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 import os
+from dotenv import load_dotenv
 
-# Carga variables del archivo .env
+# Cargar variables de entorno
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+# Obtener URL de base de datos
+DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://usuario:clave2334@db:3306/Base12")
 
-# Crea el engine de SQLAlchemy
-engine = create_engine(DATABASE_URL)
+# Crear engine de SQLAlchemy
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,  # Verifica conexiones antes de usarlas
+    pool_recycle=3600,   # Recicla conexiones cada hora
+    echo=False           # Cambia a True para ver queries SQL en consola
+)
 
-# Crea la sesión
+# Crear SessionLocal
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Base para modelos ORM
+# Base para modelos
 Base = declarative_base()

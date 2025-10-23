@@ -1,24 +1,39 @@
-# backend/api_backend/main_api.py
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+import sys
+sys.path.append('/app')  # Agrega la ruta padre
+from database import engine, Base
+import auth_api
 
-from fastapi import FastAPI, Depends
-from sqlalchemy.orm import Session
-from . import models, database
+# Crear tablas en la base de datos
+Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(
+    title="Sistema de Gestión de Usuarios",
+    description="API con autenticación JWT para gestión de usuarios",
+    version="1.0.0"
+)
 
-# Dependency para obtener sesión de DB
-def get_db():
-    db = database.SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+# Configurar CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:4200"],  # Angular dev server
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Incluir routers
+app.include_router(auth_api.router)
 
 @app.get("/")
-async def root():
-    return {"message": "¡Hola mundo desde FastAPI!"}
+def root():
+    return {
+        "message": "API de Gestión de Usuarios",
+        "version": "1.0.0",
+        "docs": "/docs"
+    }
 
-@app.get("/users")
-def get_users(db: Session = Depends(get_db)):
-    users = db.query(models.User).all()
-    return users
+@app.get("/health")
+def health_check():
+    return {"status": "ok", "message": "API funcionando correctamente"}
